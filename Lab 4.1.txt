@@ -1,0 +1,35 @@
+import math
+xr=0
+h=0.5
+x=xr+h
+x1=x+h
+
+def fx(x):
+    return (-0.1*(x**4))-(0.15*(x**3))-(0.5*(x**2))-(0.25*x)+1.2
+
+def fd(x):
+    return (-0.4*((x)**3))-(0.45*((x)**2))-(1*(x))-0.25
+
+def fini(x,x1):
+    f1=(fx(x)-fx(x1))/h
+    return f1
+
+def fmed(x,xr):
+    f2=(fx(xr)-fx(x))/h
+    return f2
+
+def ffin(xr,x1):
+    f3=(fx(x1)-fx(xr))/(2*h)
+    return f3
+
+print "el valor de la funcion es: ", fx(x)
+print "el valor Real de la derivada es: ", fd(x)
+print ""
+print "el valor del primer intervalo (0 - 0,5): ",fmed(x,x1)
+print "el error con respecto a la derivada es: ", (fd(x)-fmed(x,x1))/fd(x)
+print ""
+print "el valor del segundo intervalo (0,5 - 1): ",fini(x,xr)
+print "el error con respecto a la derivada es: ", (fd(x)-fini(x,xr))/fd(x)
+print ""
+print "el valor del intervalo completo (0 - 1): ",ffin(xr,x1)
+print "el error con respecto a la derivada es: ", (fd(x)-ffin(xr,x1))/fd(x)

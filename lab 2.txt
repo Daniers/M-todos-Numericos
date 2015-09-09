@@ -1,0 +1,22 @@
+import math
+n=4
+err=100
+es=(0.5*(10**(2-n)))
+m=68.1
+c=12.5
+g=9.8
+va=0
+t=0
+aux=0
+while err > es:
+    f=1-math.exp(-(c/m)*(t))
+    va=aux
+    aux = va + (g-((c*va)/m))
+    v=((m*g)/c)*f
+    err=(aux-v)
+    print "Tiempo :",t # imprime el tiempo en el que ser calcula la velocidad
+    t +=1
+    print "valor :",v # imprimir valor de funcion
+    print "valor calculado :",aux # imprimir valor de funcion calculado
+    print "error :",err # imprimir porcentaje de error
+    print "" # salto de linea

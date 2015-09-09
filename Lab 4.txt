@@ -1,0 +1,36 @@
+import math
+x=(math.pi)/4
+x1=(math.pi)/3
+h=(math.pi)/12
+error=0
+#print "Ingrese el orden de la funcion"
+#orden = int(input("Orden: "))
+orden=0
+while orden < 7:
+
+    def fx(x1):
+        return math.cos(x1)
+
+    def faprox(x,orden):
+        f=math.cos(x)
+        f1=-math.sin(x)
+        f2=-math.cos(x)
+        f3=math.sin(x)
+        f4=math.cos(x)
+        f5=-math.sin(x)
+        f6=-math.cos(x)
+        deri=[f1,f2,f3,f4,f5,f6]
+        aux=f
+        n=0
+        while orden > 0:
+            aux+=(deri[n]/math.factorial(n+1))*(h**(n+1))
+            n+=1
+            orden-=1
+        return aux
+    error=(fx(x1)-faprox(x,orden))/fx(x1)
+    print "El Orden de la serie de Taylor es: ", orden
+    print "El valor f aproximado es: ", faprox(x,orden)
+    print "El valor de la funcion es: ", fx(x1)
+    print "El error es: ", error
+    print ""
+    orden+=1

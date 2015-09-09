@@ -1,0 +1,18 @@
+import math
+n=1
+es=0.0005
+count=1
+aux=0
+err=100
+while err > es:
+    x=0.5
+    y=(math.factorial(n))
+    fun=(x**n)/y #funcion a evaluar
+    print n #imprimir numero de iteracion
+    n += 1
+    err=((count-aux)/count)*100 # impresion de error
+    aux=count
+    print "valor :",count # imprimir valor de e^
+    count += fun
+    print "error :",err # imprimir porcentaje de error
+    print "" # salto de linea
