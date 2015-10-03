@@ -1,0 +1,24 @@
+import math
+import pylab as plt
+
+x=-10
+x1=[]
+func=[]
+func2=[]
+def calculada1(x):
+    print "funcion numero 1"
+    ant=0
+    while x <= 10:
+        dato = (3+(ant**2))/2
+        valor = (x**2)-(2*x)+3
+        x1.append(x)
+        func.append(dato)
+        func2.append(valor)
+        print "el termino x de la funcion ", x
+        print "El valor de la funcion es ",dato
+        print ""
+        ant=dato
+        x+=1
+    plt.plot(x1,func2)
+    plt.show()
+calculada1(x)

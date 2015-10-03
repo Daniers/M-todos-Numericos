@@ -1,0 +1,42 @@
+import math
+import pylab as plt
+
+x=0
+i=-2
+x2=[]
+func1=[]
+func2=[]
+
+def calculada2(i, x):
+    ant=0
+    print "funcion numero 2"
+    print ""
+    while i <=2:
+        infor = (math.exp(-i))-i
+        x2.append(i)
+        func1.append(infor)
+        i+=1
+    plt.plot(x2,func1, color="g", linestyle="--")
+    plt.title("Funcion")   # Establece el título del gráfico
+    plt.xlabel("Valores en x")   # Establece el título del eje x 
+    plt.ylabel("Exponencial")   # Establece el título del eje y
+    plt.grid(True)  # Activa cuadrícula del gráfico pero no se muestra
+    plt.show()
+    
+    while x <=10:
+        datoac = math.exp(-ant)
+        x2.append(x)
+        func2.append(datoac)
+        erro1=((datoac-ant)/datoac)*100
+        erro2=((0.56714329-datoac)/0.56714329)*100
+        ant=datoac
+        #print '{0:2} {1:3} {2:4}'.format(x ,datoac,erro1,erro2)
+        print repr(x).rjust(2), repr(datoac).rjust(3), repr(erro1).rjust(4),repr(erro2).rjust(5)
+        #print "El termino x de la funcion ", x
+        #print "El valor de la funcion es ",datoac
+        #print "El error porcentual absoluto " ,erro1
+        #print "El error t ",erro2
+        print ""
+        x+=1
+        
+calculada2(i,x)
