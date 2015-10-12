@@ -1,0 +1,33 @@
+import math
+import pylab as plt
+
+xi=0
+x=0
+i=1
+er=100
+def f(x):
+    a=(math.exp(-x))-x
+    return a
+    a = staticmethod(a)
+    
+    
+def f1(x):
+    b=(-(math.exp(-x)))-1
+    return b
+    b = staticmethod(b)
+    
+    
+def calcular(x,i,er):
+    while er > 0:
+        xi=x-(f(x)/f1(x))
+        err=((xi-x)/xi)*100
+        er=((0.56714329-xi)/0.56714329)*100
+        print "%d      %.9f     %.3f     %.8f"%(i,xi,err,er)  
+        print ""
+        x=xi
+        i+=1    
+print "i           x          Ea          Er"
+print ""
+print "%d      %.9f     ---     %.3f"%(i-1,x,er)
+print ""
+calcular(x,i,er)
