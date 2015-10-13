@@ -1,0 +1,154 @@
+import math
+import pylab as plt
+
+def punto ():
+    x=0
+    i=-2
+    x1=[]
+    func2=[]
+    
+    def calculada2(i, x):
+        ant=0
+        print "funcion numero 2"
+        print ""
+        while i <=2:
+            infor = (math.exp(-i))-i
+            i+=1    
+        while x <=10:
+            datoac = math.exp(-ant)
+            erro1=((datoac-ant)/datoac)*100
+            erro2=((0.56714329-datoac)/0.56714329)*100
+            ant=datoac
+            x1.append(x)
+            func2.append(erro1)
+            print repr(x).rjust(2), repr(datoac).rjust(3), repr(erro1).rjust(4),repr(erro2).rjust(5)
+            print ""
+            x+=1
+        plt.plot(x1,func2, color="g", linestyle="--")
+        
+    calculada2(i,x)
+    
+def primer():
+    
+    xi=0
+    x=0
+    i=1
+    er=100
+    err=0
+    x2=[]
+    func3=[]
+    def f(x):
+        a=(math.exp(-x))-x
+        return a
+        a = staticmethod(a)
+    def f1(x):
+        b=(-(math.exp(-x)))-1
+        return b
+        b = staticmethod(b)
+    def calcular(x,i,er):
+        while er > 0:
+            xi=x-(f(x)/f1(x))
+            err=((xi-x)/xi)*100
+            er=((0.56714329-xi)/0.56714329)*100
+            print "%d      %.9f     %.3f     %.8f"%(i,xi,err,er)  
+            print ""
+            x=xi
+            x2.append(i)
+            func3.append(err)
+            i+=1
+        plt.plot(x2,func3, color="b", linestyle="--")
+    
+    print "i           x          Ea          Er"
+    print ""
+    print "%d      %.9f     ---     %.3f"%(i-1,x,er)
+    print ""
+    
+    calcular(x,i,er)
+
+def segunda():
+
+    xi=0
+    x=1
+    i=1
+    er=100
+    x3=[]
+    func4=[]
+
+    def f(x):
+        a=(math.exp(-x))-x
+        return a
+        a = staticmethod(a)    
+    def f1(x,xi):
+        b=(f(x)-f(xi))/(x-xi)
+        return b
+        b = staticmethod(b)
+    def calcular(i,x,xi):
+        er=100
+        print "i           x          Ea          Er"
+        print ""
+        while er > 0:
+            xis = x-(f(x)/f1(x,xi))
+            err=((x-xi)/x)*100
+            er=((0.56714329-xi)/0.56714329)*100
+            print "%d      %.9f     %.3f     %.8f"%(i,xis,err,er)  
+            print ""
+            xi=xis
+            x3.append(i)
+            func4.append(err)
+            i+=1  
+        plt.plot(x3,func4, color="r", linestyle="--")
+    
+    calcular(i,x,xi)
+    
+def tercera():
+    import math
+    import pylab as plt
+
+    xl=0.0
+    xu=1.0
+    xr=0
+    n=0
+    x4=[]
+    func5=[]
+
+    def fun(x):
+        f=(math.exp(-x))-x
+        return f
+        f = staticmethod(f)
+    
+    def cal(xl,xu,xr,n):
+        if (n < 1000):
+            xaux=xr
+            xr=(xu+xl)/2
+            if ((fun(xl)*fun(xu)) < 0):
+                if ((fun(xl)*fun(xr)) < 0):
+                    err=((xr-xaux)/xr)*100
+                    er=((0.56714329-xr)/0.56714329)*100
+                    func5.append(err)
+                    x4.append(n)
+                    xu=xr
+                    n+=1
+                    cal(xl,xu,xr,n)
+                if ((fun(xl)*fun(xr)) > 0):
+                    err=((xr-xaux)/xr)*100
+                    er=((0.56714329-xr)/0.56714329)*100
+                    func5.append(err)
+                    x4.append(n)
+                    xl=xr
+                    n+=1
+                    cal(xl,xu,xr,n)
+                if ((fun(xl)*fun(xr)) == 0):
+                    print "La raiz de la funcion es: ", xr
+                
+    cal(xl,xu,xr,n)
+    plt.plot(x4,func5, color="m", linestyle="--")
+    
+punto()
+primer()
+segunda()
+tercera()
+plt.title("Funcion")   # Establece el título del gráfico
+plt.xlabel("Valores en x")   # Establece el título del eje x 
+plt.ylabel("Ea")   # Establece el título del eje y
+plt.grid(True)  # Activa cuadrícula del gráfico pero no se muestra
+plt.show()

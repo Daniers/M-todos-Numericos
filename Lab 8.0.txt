@@ -1,0 +1,29 @@
+import math
+import pylab as plt
+
+xl=0.0
+xu=1.0
+xr=(xu+xl)/2
+n=0
+
+def fun(x):
+    f=(math.exp(-x))-x
+    return f
+    f = staticmethod(f)
+    
+def calcular(xl,xu,xr,n):
+    if (n < 1000):
+        xr=(xu+xl)/2
+        if ((fun(xl)*fun(xu)) < 0):
+            if ((fun(xl)*fun(xr)) < 0):
+                xu=xr
+                n+=1
+                calcular(xl,xu,xr,n)
+            if ((fun(xl)*fun(xr)) > 0):
+                xl=xr
+                n+=1
+                calcular(xl,xu,xr,n)
+            if ((fun(xl)*fun(xr)) == 0):
+                print "La raiz de la funcion es: ", xr
+                
+calcular(xl,xu,xr,n)
