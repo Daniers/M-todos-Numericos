@@ -1,0 +1,31 @@
+import math
+import pylab as plt
+
+x=-8
+x1=[]
+func=[]
+func2=[]
+def calculada1(x):
+    print "funcion numero 1"
+    ant=0
+    while x <= 8:
+        dato = ((1.0/2.0)*x)+1.0
+        valor = ((1.0/2.0)*x)+(1.0/2.0)
+        x1.append(x)
+        func.append(dato)
+        func2.append(valor)
+        print "el termino x de la funcion ", x
+        print "El valor de la funcion 1 es ",dato
+        print "El valor de la funcion 2 es ",valor
+        print ""
+        ant=dato
+        x+=1
+    plt.title("Graficas")
+    plt.xlabel("X")
+    plt.ylabel("Valor De Funciones")
+    plt.plot(x1,func)
+    plt.plot(x1,func2)
+    plt.grid(True)
+    plt.show()
+
+calculada1(x)
