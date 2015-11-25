@@ -1,0 +1,47 @@
+import numpy as np
+import math
+import matplotlib.pyplot as plt
+
+y=[19,19,23,21,21,21,19,18,20,22,22,21,19,19,20,20,20,21,20,23]
+y=np.array(y)
+x=vx=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+x=np.array(x)
+
+#Formula A1
+i=0
+A=0.0
+sumx=sumy=sumxy=sumx2=0
+while i<20:
+    while i<20:
+        sumx=sumx+x[i]
+        sumy=sumy+y[i]
+        sumxy=sumxy+(x[i]*y[i])
+        sumx2=sumx2+(x[i]**2)
+        i=i+1
+    A=((20.0*sumxy)-(sumx*sumy))/((20.0*sumx2)-((sumx)**2))
+print "el valor de A1: ", A  #valor expreimental
+
+#Formula A0
+#promedio x
+print "El valor promedio de x es: ", x.mean() #valor promedio de x exacto
+#promedio y
+print "El valor promedio de y es: ", y.mean() #valor promedio de y exacto
+
+a=((y.mean())-(x.mean()*A))
+print "el valor de A0: ", a  #valor expreimental
+
+#Formula de y
+b=0
+vy=[]
+def f(g):
+    return a+(A*g)
+vy=f(x)
+
+#Grafica
+plt.plot(x,vy, color="b", linestyle="--")
+plt.scatter(x,y, color="m")
+plt.title("Funcion")   # Establece el título del gráfico
+plt.xlabel("Valores en t")   # Establece el título del eje x 
+plt.ylabel("Funcion ")   # Establece el título del eje y
+plt.grid(True)  # Activa cuadrícula del gráfico pero no se muestra
+plt.show()
