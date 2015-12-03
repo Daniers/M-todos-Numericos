@@ -1,0 +1,35 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+t=[]
+dat=[]
+aux=[]
+xp=[1.0,2.0,3.0,4.0,5.0,6.0,7.0]
+xp=np.array(xp)
+y1=np.arange(1, 7, 0.01)
+
+def funs(t):
+    return np.log(t)
+
+def inter(t,i):
+    b0=funs(xp[i-2])
+    b1=((funs(xp[i-1]))-(funs(xp[i-2])))/(xp[i-1]-xp[i-2])
+    b2=((((funs(xp[i]))-(funs(xp[i-1])))/(xp[i]-xp[i-1]))-(((funs(xp[i-1]))-(funs(xp[i-2])))/(xp[i-1]-xp[i-2])))/(xp[i]-xp[i-2])
+    return b0+(b1*(t-xp[i-2]))+(b2*(t-xp[i-2])*(t-xp[i-1]))
+
+aux=funs(xp)
+i=2
+while i<=6:
+    t=np.arange(xp[i-2], xp[i], 0.01)
+    dat=inter(t,i)
+    plt.plot(t,dat, color="g", linestyle="--")
+    i+=2
+
+plt.plot(y1,funs(y1), color="r", label="Ln")    
+plt.scatter(xp,aux, color="g", linestyle="--", label="Interpolacion")
+plt.title("Funcion Ln(x)")   # Establece el título del gráfico
+plt.xlabel("Tiempo (s)")   # Establece el título del eje x 
+plt.ylabel("Logaritmo natural ")   # Establece el título del eje y
+plt.grid(True)  # Activa cuadrícula del gráfico pero no se muestra
+plt.legend(loc="lower right")
+plt.show()

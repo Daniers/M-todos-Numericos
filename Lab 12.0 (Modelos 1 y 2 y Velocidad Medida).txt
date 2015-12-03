@@ -1,0 +1,191 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+n=0
+k=0
+m=68.1
+c=12.5
+g=9.8
+m1=m2=[]
+aux=[10.00,16.30,23.00,27.50,31.00,35.60,39.00,41.50,42.90,45.00,46.00,45.50,46.00,49.00,50.00]
+xp=[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0]
+xp=np.array(xp)
+
+def funs(t):
+    return ((m*g)/c)*(1-np.exp(-(c/m)*(t)))
+
+def func(t):
+    v1=((m*g)/c)*((t)/(3.75+t))
+    return v1
+
+m1=funs(xp)
+m2=func(xp)
+
+plt.plot(m1,xp, color="b", linestyle="--")
+plt.plot(m2,xp, color="m", linestyle="--")
+plt.scatter(aux,xp, color="g", linestyle="--")
+plt.title("Modelos")   # Establece el título del gráfico
+plt.xlabel("Tiempo (s)")   # Establece el título del eje x 
+plt.ylabel("Modelos 1 y 2 ")   # Establece el título del eje y
+plt.grid(True)  # Activa cuadrícula del gráfico pero no se muestra
+plt.show()
+
+#Regresion lineal Modelo 1
+
+def Regrecionlineal1(m1):
+    y=m1
+    y=np.array(y)
+    x=vx=[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0]
+    x=np.array(x)
+    n=15
+    #Formula A1
+    i=0
+    A=0.0
+    sumx=sumy=sumxy=sumx2=0
+    while i<15:
+        while i<15:
+            sumx=sumx+x[i]
+            sumy=sumy+y[i]
+            sumxy=sumxy+(x[i]*y[i])
+            sumx2=sumx2+(x[i]**2)
+            i=i+1
+        A=((n*sumxy)-(sumx*sumy))/((n*sumx2)-((sumx)**2))
+    
+    a=((y.mean())-(x.mean()*A))
+    
+    #Formula de y
+    b=0
+    vy=[]
+    def f(g):
+        return a+(A*g)
+    vy=f(x)
+
+    #Grafica
+    plt.plot(x,vy, color="b", linestyle="--")
+    plt.scatter(x,y, color="m")
+    plt.title("Regrecion M1-T")   # Establece el título del gráfico
+    plt.xlabel("Tiempo")   # Establece el título del eje x 
+    plt.ylabel("Modelo 1 ")   # Establece el título del eje y
+    plt.grid(True)  # Activa cuadrícula del gráfico pero no se muestra
+    plt.show()
+
+def Regresionlineal2(m2):
+
+    y=m2
+    y=np.array(y)
+    x=vx=[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0]
+    x=np.array(x)
+    n=15
+    #Formula A1
+    i=0
+    A=0.0
+    sumx=sumy=sumxy=sumx2=0
+    while i<n:
+        while i<n:
+            sumx=sumx+x[i]
+            sumy=sumy+y[i]
+            sumxy=sumxy+(x[i]*y[i])
+            sumx2=sumx2+(x[i]**2)
+            i=i+1
+        A=((n*sumxy)-(sumx*sumy))/((n*sumx2)-((sumx)**2))
+    
+    a=((y.mean())-(x.mean()*A))
+    
+    #Formula de y
+    b=0
+    vy=[]
+    def f(g):
+        return a+(A*g)
+    vy=f(x)
+
+    #Grafica
+    plt.plot(x,vy, color="b", linestyle="--")
+    plt.scatter(x,y, color="m")
+    plt.title("Regrecion M2-T")   # Establece el título del gráfico
+    plt.xlabel("Tiempo")   # Establece el título del eje x 
+    plt.ylabel("Modelo 2 ")   # Establece el título del eje y
+    plt.grid(True)  # Activa cuadrícula del gráfico pero no se muestra
+    plt.show()
+    
+    
+def Regresionrespectovel1(m1,aux):
+    
+    y=m1
+    y=np.array(y)
+    x=vx=aux
+    x=np.array(x)
+    n=15
+    #Formula A1
+    i=0
+    A=0.0
+    sumx=sumy=sumxy=sumx2=0
+    while i<n:
+        while i<n:
+            sumx=sumx+x[i]
+            sumy=sumy+y[i]
+            sumxy=sumxy+(x[i]*y[i])
+            sumx2=sumx2+(x[i]**2)
+            i=i+1
+        A=((n*sumxy)-(sumx*sumy))/((n*sumx2)-((sumx)**2))
+    
+    a=((y.mean())-(x.mean()*A))
+    
+    #Formula de y
+    b=0
+    vy=[]
+    def f(g):
+        return a+(A*g)
+    vy=f(x)
+
+    #Grafica
+    plt.plot(x,vy, color="b", linestyle="--")
+    plt.scatter(x,y, color="m")
+    plt.title("Regrecion M1-Vm")   # Establece el título del gráfico
+    plt.xlabel("Velocidad Medida")   # Establece el título del eje x 
+    plt.ylabel("Modelo 1 ")   # Establece el título del eje y
+    plt.grid(True)  # Activa cuadrícula del gráfico pero no se muestra
+    plt.show()
+
+def Regresionrespectovel2(m2,aux):
+    
+    y=m2
+    y=np.array(y)
+    x=vx=aux
+    x=np.array(x)
+    n=15
+    #Formula A1
+    i=0
+    A=0.0
+    sumx=sumy=sumxy=sumx2=0
+    while i<n:
+        while i<n:
+            sumx=sumx+x[i]
+            sumy=sumy+y[i]
+            sumxy=sumxy+(x[i]*y[i])
+            sumx2=sumx2+(x[i]**2)
+            i=i+1
+        A=((n*sumxy)-(sumx*sumy))/((n*sumx2)-((sumx)**2))
+
+    a=((y.mean())-(x.mean()*A))
+    
+    #Formula de y
+    b=0
+    vy=[]
+    def f(g):
+        return a+(A*g)
+    vy=f(x)
+
+    #Grafica
+    plt.plot(x,vy, color="b", linestyle="--")
+    plt.scatter(x,y, color="m")
+    plt.title("Regrecion M2-Vm")   # Establece el título del gráfico
+    plt.xlabel("Velocidad Medida")   # Establece el título del eje x 
+    plt.ylabel("Modelo 2 ")   # Establece el título del eje y
+    plt.grid(True)  # Activa cuadrícula del gráfico pero no se muestra
+    plt.show()
+
+    
+Regrecionlineal1(m1)
+Regresionlineal2(m2)
+Regresionrespectovel1(m1,aux)
+Regresionrespectovel2(m2,aux)
